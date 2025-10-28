@@ -9,7 +9,14 @@ export const ghibliAgent = new Agent({
   description: "Ghibli Films Agent, use for querying Ghibli Films",
   instructions:
     "You are my Ghibli Films assistant. I will ask you questions you must retrieve from Ghibli Films.",
-  model: "openai/gpt-4o-mini",
+  model: [
+    {
+      model: "openai/gpt-4o-mini",
+    },
+    {
+      model: "vercel/deepseek/deepseek-r1",
+    },
+  ],
   tools: { ghibliFilms, ghibliCharacters },
   memory,
 });
