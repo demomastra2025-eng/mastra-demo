@@ -140,7 +140,7 @@ export const GenerativeUserInterfacesDemo = () => {
           <Input
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask about the weather in any city"
+            placeholder="Enter a city name"
           />
           <Button type="submit" disabled={status !== "ready"}>
             Get Weather
@@ -165,7 +165,7 @@ export const GenerativeUserInterfacesDemo = () => {
                 if (part.type === "tool-weatherTool") {
                   switch (part.state) {
                     case "input-available":
-                      return <Loader />;
+                      return <Loader key={index} />;
                     case "output-available":
                       return (
                         <div key={index}>
