@@ -5,38 +5,36 @@ import {
 } from "@assistant-ui/react-ai-sdk";
 import { ThreadList } from "@/components/assistant-ui/thread-list";
 import { Thread } from "@/components/assistant-ui/thread";
+import { changeBgColor } from "@/mastra/tools/color-change-tool";
 
 const suggestions = [
   {
-    title: "What's the latest movie?",
-    action: "What's the latest movie?",
+    title: "Dark blue",
+    action: "Change the background color to a dark blue"
   },
   {
-    title: "What's the first Ghibli movie?",
-    action: "What's the first Ghibli movie?",
+    title: "Rebeccapurple",
+    action: "Change the background color to rebeccapurple"
   },
-  {
-    title: "How many Ghibli movies are there?",
-    action: "How many Ghibli movies are there?",
-  },
-  {
-    title: "What's the longest Ghibli movie?",
-    action: "What's the longest Ghibli movie?",
-  }
-]
+];
 
-export const AssistantUIDemo = () => {
+export const ClientAssistantUIDemo = () => {
   const runtime = useChatRuntime({
     transport: new AssistantChatTransport({
-      api: "http://localhost:4111/chat/ghibliAgent",
+      api: "http://localhost:4111/chat/bgColorAgent",
     }),
+    onToolCall: ({ toolCall }) => {
+      if (toolCall.toolName === 'colorChangeTool') {
+        changeBgColor((toolCall.input as { color: string }).color)
+      }
+    }
   });
 
   return (
     <AssistantRuntimeProvider runtime={runtime}>
       <div className="grid grid-cols-[200px_1fr] gap-x-2 px-4 py-4 size-full">
         <ThreadList />
-        <Thread suggestions={suggestions} welcome="Ask me about Ghibli movies, characters, and trivia." />
+        <Thread suggestions={suggestions} welcome="Ask me to change the background color" />
       </div>
     </AssistantRuntimeProvider>
   );

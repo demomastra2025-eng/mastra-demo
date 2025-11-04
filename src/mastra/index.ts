@@ -38,9 +38,9 @@ export const mastra = new Mastra({
         path: "/network",
         agent: "routingAgent",
       }),
+      // @ts-expect-error - resourceId not necessary
       registerCopilotKit({
         path: "/copilotkit",
-        resourceId: "ghibliAgent",
       }),
     ],
   },

@@ -31,6 +31,8 @@ import { GenerativeUserInterfacesDemo } from "./demos/ai-sdk/generative-user-int
 import { WorkflowDemo } from "./demos/ai-sdk/workflow";
 import { NetworkDemo } from "./demos/ai-sdk/network";
 import { ClientAISdkDemo } from "./demos/client-sdk/ai-sdk";
+import { ClientAssistantUIDemo } from "./demos/client-sdk/assistant-ui";
+import { ClientCopilotKitDemo } from "./demos/client-sdk/copilot-kit";
 
 type SidebarId =
   | "aisdk"
@@ -39,7 +41,9 @@ type SidebarId =
   | "generative-user-interfaces"
   | "workflow"
   | "agent-network"
-  | "client-ai-sdk";
+  | "client-ai-sdk"
+  | "client-assistant-ui"
+  | "client-copilot-kit";
 
 type SidebarEntry = {
   id: SidebarId;
@@ -112,6 +116,18 @@ const SIDEBAR: SidebarGroupEntry[] = [
         name: 'AI SDK',
         icon: Sparkles,
         description: 'AI SDK + Client SDK'
+      },
+      {
+        id: 'client-assistant-ui',
+        name: 'Assistant UI',
+        icon: Bot,
+        description: 'Assistant UI + Client SDK'
+      },
+      {
+        id: 'client-copilot-kit',
+        name: 'Copilot Kit',
+        icon: MessageSquare,
+        description: 'Copilot Kit + Client SDK'
       }
     ]
   }
@@ -136,6 +152,10 @@ export default function Page() {
         return <NetworkDemo />
       case "client-ai-sdk":
         return <ClientAISdkDemo />
+      case "client-assistant-ui":
+        return <ClientAssistantUIDemo />
+      case "client-copilot-kit":
+        return <ClientCopilotKitDemo />
     }
   };
 

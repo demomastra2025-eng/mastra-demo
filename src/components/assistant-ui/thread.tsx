@@ -35,7 +35,18 @@ import {
 
 import { cn } from "@/lib/utils";
 
-export const Thread: FC = () => {
+interface ThreadSuggestionsProps {
+  suggestions: {
+    title: string;
+    action: string
+  }[]
+}
+
+interface ThreadProps extends ThreadSuggestionsProps {
+  welcome: string
+}
+
+export const Thread: FC<ThreadProps> = ({ suggestions, welcome }) => {
   return (
     <LazyMotion features={domAnimation}>
       <MotionConfig reducedMotion="user">
@@ -47,7 +58,7 @@ export const Thread: FC = () => {
         >
           <ThreadPrimitive.Viewport className="aui-thread-viewport relative flex flex-1 flex-col overflow-x-auto overflow-y-scroll px-4">
             <ThreadPrimitive.If empty>
-              <ThreadWelcome />
+              <ThreadWelcome suggestions={suggestions} welcome={welcome} />
             </ThreadPrimitive.If>
 
             <ThreadPrimitive.Messages
@@ -84,7 +95,11 @@ const ThreadScrollToBottom: FC = () => {
   );
 };
 
-const ThreadWelcome: FC = () => {
+interface ThreadWelcomeProps extends ThreadSuggestionsProps {
+  welcome: string
+}
+
+const ThreadWelcome: FC<ThreadWelcomeProps> = ({ suggestions, welcome }) => {
   return (
     <div className="aui-thread-welcome-root mx-auto my-auto flex w-full max-w-[var(--thread-max-width)] flex-grow flex-col">
       <div className="aui-thread-welcome-center flex w-full flex-grow flex-col items-center justify-center">
@@ -104,36 +119,19 @@ const ThreadWelcome: FC = () => {
             transition={{ delay: 0.1 }}
             className="aui-thread-welcome-message-motion-2 text-2xl text-muted-foreground/65"
           >
-            Ask me about Ghibli movies, characters, and trivia.
+            {welcome}
           </m.div>
         </div>
       </div>
-      <ThreadSuggestions />
+      <ThreadSuggestions suggestions={suggestions} />
     </div>
   );
 };
 
-const ThreadSuggestions: FC = () => {
+const ThreadSuggestions: FC<ThreadSuggestionsProps> = ({ suggestions }) => {
   return (
     <div className="aui-thread-welcome-suggestions grid w-full gap-2 pb-4 @md:grid-cols-2">
-      {[
-        {
-          title: "What's the latest movie?",
-          action: "What's the latest movie?",
-        },
-        {
-          title: "What's the first Ghibli movie?",
-          action: "What's the first Ghibli movie?",
-        },
-        {
-          title: "How many Ghibli movies are there?",
-          action: "How many Ghibli movies are there?",
-        },
-        {
-          title: "What's the longest Ghibli movie?",
-          action: "What's the longest Ghibli movie?",
-        },
-      ].map((suggestedAction, index) => (
+      {suggestions.map((suggestedAction, index) => (
         <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
