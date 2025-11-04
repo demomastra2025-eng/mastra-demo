@@ -30,6 +30,7 @@ import { AssistantUIDemo } from "@/demos/assistant-ui";
 import { GenerativeUserInterfacesDemo } from "./demos/ai-sdk/generative-user-interfaces";
 import { WorkflowDemo } from "./demos/ai-sdk/workflow";
 import { NetworkDemo } from "./demos/ai-sdk/network";
+import { ClientAISdkDemo } from "./demos/client-sdk/ai-sdk";
 
 type SidebarId =
   | "aisdk"
@@ -37,7 +38,8 @@ type SidebarId =
   | "copilot-kit"
   | "generative-user-interfaces"
   | "workflow"
-  | "agent-network";
+  | "agent-network"
+  | "client-ai-sdk";
 
 type SidebarEntry = {
   id: SidebarId;
@@ -101,6 +103,18 @@ const SIDEBAR: SidebarGroupEntry[] = [
       }
     ],
   },
+  {
+    groupId: 'client-js',
+    groupName: 'Mastra Client SDK',
+    items: [
+      {
+        id: 'client-ai-sdk',
+        name: 'AI SDK',
+        icon: Sparkles,
+        description: 'AI SDK + Client SDK'
+      }
+    ]
+  }
 ];
 
 export default function Page() {
@@ -120,6 +134,8 @@ export default function Page() {
         return <WorkflowDemo />;
       case "agent-network":
         return <NetworkDemo />
+      case "client-ai-sdk":
+        return <ClientAISdkDemo />
     }
   };
 

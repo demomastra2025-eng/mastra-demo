@@ -6,12 +6,14 @@ import { ghibliAgent } from "./agents/ghibli-agent";
 import { weatherAgent } from "./agents/weather-agent";
 import { activitiesWorkflow } from "./workflows/activities-workflow";
 import { routingAgent } from "./agents/routing-agent";
+import { bgColorAgent } from "./agents/bg-color-agent";
 
 export const mastra = new Mastra({
   agents: {
     ghibliAgent,
     weatherAgent,
     routingAgent,
+    bgColorAgent,
   },
   workflows: {
     activitiesWorkflow,
