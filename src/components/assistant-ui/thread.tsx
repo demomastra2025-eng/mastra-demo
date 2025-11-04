@@ -38,12 +38,12 @@ import { cn } from "@/lib/utils";
 interface ThreadSuggestionsProps {
   suggestions: {
     title: string;
-    action: string
-  }[]
+    action: string;
+  }[];
 }
 
 interface ThreadProps extends ThreadSuggestionsProps {
-  welcome: string
+  welcome: string;
 }
 
 export const Thread: FC<ThreadProps> = ({ suggestions, welcome }) => {
@@ -96,7 +96,7 @@ const ThreadScrollToBottom: FC = () => {
 };
 
 interface ThreadWelcomeProps extends ThreadSuggestionsProps {
-  welcome: string
+  welcome: string;
 }
 
 const ThreadWelcome: FC<ThreadWelcomeProps> = ({ suggestions, welcome }) => {

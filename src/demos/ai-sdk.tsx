@@ -98,7 +98,7 @@ export const AISdkDemo = () => {
 
   const handleSuggestionClick = (suggestion: string) => {
     sendMessage({ text: suggestion });
-  }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 relative size-full">
@@ -190,7 +190,11 @@ export const AISdkDemo = () => {
 
         <Suggestions>
           {suggestions.map((suggestion) => (
-            <Suggestion key={suggestion} onClick={handleSuggestionClick} suggestion={suggestion} />
+            <Suggestion
+              key={suggestion}
+              onClick={handleSuggestionClick}
+              suggestion={suggestion}
+            />
           ))}
         </Suggestions>
 

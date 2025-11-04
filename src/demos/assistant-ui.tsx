@@ -23,8 +23,8 @@ const suggestions = [
   {
     title: "What's the longest Ghibli movie?",
     action: "What's the longest Ghibli movie?",
-  }
-]
+  },
+];
 
 export const AssistantUIDemo = () => {
   const runtime = useChatRuntime({
@@ -37,7 +37,10 @@ export const AssistantUIDemo = () => {
     <AssistantRuntimeProvider runtime={runtime}>
       <div className="grid grid-cols-[200px_1fr] gap-x-2 px-4 py-4 size-full">
         <ThreadList />
-        <Thread suggestions={suggestions} welcome="Ask me about Ghibli movies, characters, and trivia." />
+        <Thread
+          suggestions={suggestions}
+          welcome="Ask me about Ghibli movies, characters, and trivia."
+        />
       </div>
     </AssistantRuntimeProvider>
   );

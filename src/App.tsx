@@ -24,7 +24,7 @@ import {
   AppWindowMac,
   Network,
 } from "lucide-react";
-import { SiGithub } from "@icons-pack/react-simple-icons"
+import { SiGithub } from "@icons-pack/react-simple-icons";
 import { AISdkDemo } from "@/demos/ai-sdk";
 import { CopilotKitDemo } from "@/demos/copilot-kit";
 import { AssistantUIDemo } from "@/demos/assistant-ui";
@@ -106,33 +106,33 @@ const SIDEBAR: SidebarGroupEntry[] = [
         name: "Agent Network",
         icon: Network,
         description: "Coordinating multiple AI agents for complex tasks",
-      }
+      },
     ],
   },
   {
-    groupId: 'client-js',
-    groupName: 'Mastra Client SDK',
+    groupId: "client-js",
+    groupName: "Mastra Client SDK",
     items: [
       {
-        id: 'client-ai-sdk',
-        name: 'AI SDK',
+        id: "client-ai-sdk",
+        name: "AI SDK",
         icon: Sparkles,
-        description: 'AI SDK + Client SDK'
+        description: "AI SDK + Client SDK",
       },
       {
-        id: 'client-assistant-ui',
-        name: 'Assistant UI',
+        id: "client-assistant-ui",
+        name: "Assistant UI",
         icon: Bot,
-        description: 'Assistant UI + Client SDK'
+        description: "Assistant UI + Client SDK",
       },
       {
-        id: 'client-copilot-kit',
-        name: 'Copilot Kit',
+        id: "client-copilot-kit",
+        name: "Copilot Kit",
         icon: MessageSquare,
-        description: 'Copilot Kit + Client SDK'
-      }
-    ]
-  }
+        description: "Copilot Kit + Client SDK",
+      },
+    ],
+  },
 ];
 
 export default function Page() {
@@ -151,13 +151,13 @@ export default function Page() {
       case "workflow":
         return <WorkflowDemo />;
       case "agent-network":
-        return <NetworkDemo />
+        return <NetworkDemo />;
       case "client-ai-sdk":
-        return <ClientAISdkDemo />
+        return <ClientAISdkDemo />;
       case "client-assistant-ui":
-        return <ClientAssistantUIDemo />
+        return <ClientAssistantUIDemo />;
       case "client-copilot-kit":
-        return <ClientCopilotKitDemo />
+        return <ClientCopilotKitDemo />;
     }
   };
 
@@ -197,7 +197,9 @@ export default function Page() {
           </SidebarContent>
           <SidebarFooter>
             <Button asChild variant="outline">
-              <a href="https://github.com/mastra-ai/ui-dojo" target="_blank"><SiGithub /> Source Code</a>
+              <a href="https://github.com/mastra-ai/ui-dojo" target="_blank">
+                <SiGithub /> Source Code
+              </a>
             </Button>
           </SidebarFooter>
         </Sidebar>

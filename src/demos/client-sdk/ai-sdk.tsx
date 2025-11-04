@@ -53,31 +53,29 @@ export const ClientAISdkDemo = () => {
       api: `${MASTRA_BASE_URL}/chat/bgColorAgent`,
     }),
     onToolCall: ({ toolCall }) => {
-      if (toolCall.toolName === 'colorChangeTool') {
-        changeBgColor((toolCall.input as { color: string }).color)
+      if (toolCall.toolName === "colorChangeTool") {
+        changeBgColor((toolCall.input as { color: string }).color);
       }
-    }
+    },
   });
 
   const handleSubmit = (message: PromptInputMessage) => {
     const hasText = Boolean(message.text);
 
-    if (!(hasText)) {
+    if (!hasText) {
       return;
     }
 
-    sendMessage(
-      {
-        text: message.text || "",
-        files: message.files,
-      },
-    );
+    sendMessage({
+      text: message.text || "",
+      files: message.files,
+    });
     setInput("");
   };
 
   const handleSuggestionClick = (suggestion: string) => {
     sendMessage({ text: suggestion });
-  }
+  };
 
   return (
     <div className="max-w-4xl mx-auto p-6 relative size-full">
@@ -169,7 +167,11 @@ export const ClientAISdkDemo = () => {
 
         <Suggestions>
           {suggestions.map((suggestion) => (
-            <Suggestion key={suggestion} onClick={handleSuggestionClick} suggestion={suggestion} />
+            <Suggestion
+              key={suggestion}
+              onClick={handleSuggestionClick}
+              suggestion={suggestion}
+            />
           ))}
         </Suggestions>
 

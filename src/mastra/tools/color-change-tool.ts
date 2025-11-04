@@ -3,7 +3,7 @@ import z from "zod";
 
 export function changeBgColor(color: string) {
   if (typeof window !== "undefined") {
-    document.body.style.setProperty('--background', color);
+    document.body.style.setProperty("--background", color);
   }
 }
 

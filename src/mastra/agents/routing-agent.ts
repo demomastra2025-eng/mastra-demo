@@ -29,7 +29,7 @@ export const routingAgent = new Agent({
   tools: {
     weatherTool,
     ghibliFilms,
-    ghibliCharacters
+    ghibliCharacters,
   },
-  memory: new Memory()
-})
+  memory: new Memory(),
+});

@@ -24,13 +24,13 @@ function Chat() {
         name: "color",
         type: "string",
         description: "The color to change the background to",
-        required: true
-      }
+        required: true,
+      },
     ],
     handler: ({ color }) => {
-      changeBgColor(color)
-    }
-  })
+      changeBgColor(color);
+    },
+  });
 
   return (
     <CopilotChat
@@ -39,5 +39,5 @@ function Chat() {
         initial: "Hi! 👋 Ask me to change the background color.",
       }}
     />
-  )
+  );
 }

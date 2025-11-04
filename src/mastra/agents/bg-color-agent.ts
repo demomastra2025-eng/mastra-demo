@@ -3,9 +3,10 @@ import { Memory } from "@mastra/memory";
 import { colorChangeTool } from "../tools/color-change-tool";
 
 export const bgColorAgent = new Agent({
-  id: 'bg-color-agent',
+  id: "bg-color-agent",
   name: "Background Color Agent",
-  description: "This agent takes in a color, converts it to HEX format and changes the background color of the application.",
+  description:
+    "This agent takes in a color, converts it to HEX format and changes the background color of the application.",
   instructions: `
       You are a helpful assistant to change the background color of the application.
       You will be given a color in any format (e.g., "red", "rgb(255, 0, 0)", "hsl(0, 100%, 50%)").
