@@ -31,7 +31,7 @@ type ProgressData = {
       </div>
     </div>
   );
-};
+};                                                                                                                                                                            
 
 export const GenerativeUserInterfacesCustomEventsDemo = () => {
   const [input, setInput] = useState("");

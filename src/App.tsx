@@ -30,6 +30,7 @@ import { CopilotKitDemo } from "@/demos/copilot-kit";
 import { AssistantUIDemo } from "@/demos/assistant-ui";
 import { GenerativeUserInterfacesDemo } from "./demos/ai-sdk/generative-user-interfaces";
 import { GenerativeUserInterfacesCustomEventsDemo } from "./demos/ai-sdk/generative-user-interfaces-custom-events";
+import { SubAgentsAndWorkflowsCustomEventsDemo } from "./demos/ai-sdk/sub-agents-and-workflows-custom-events";
 import { WorkflowDemo } from "./demos/ai-sdk/workflow";
 import { NetworkDemo } from "./demos/ai-sdk/network";
 import { ClientAISdkDemo } from "./demos/client-sdk/ai-sdk";
@@ -45,9 +46,13 @@ type SidebarId =
   | "workflow"
   | "agent-network"
   | "generative-user-interfaces-with-custom-events"
+  | "sub-agents-and-workflows-with-custom-events"
+  | "agent-network-with-custom-events"
   | "client-ai-sdk"
   | "client-assistant-ui"
-  | "client-copilot-kit";
+  | "client-copilot-kit"
+  | "hitl-workflow-suspend-resume"
+  ;
 
 type SidebarEntry = {
   id: SidebarId;
@@ -121,6 +126,18 @@ const SIDEBAR: SidebarGroupEntry[] = [
         icon: AppWindowMac,
         description: "How to use custom events with Generative UIs",
       },
+      {
+        id: "sub-agents-and-workflows-with-custom-events",
+        name: "Sub Agents & Workflows",
+        icon: Workflow,
+        description: "How to use custom events with Sub Agents & Workflows",
+      },
+      {
+        id: "agent-network-with-custom-events",
+        name: "Agent Network",
+        icon: Network,
+        description: "How to use custom events with Agent Network",
+      },
     ],
   },
   {
@@ -147,6 +164,18 @@ const SIDEBAR: SidebarGroupEntry[] = [
       },
     ],
   },
+  {
+    groupId: "HITL",
+    groupName: "HITL",
+    items: [
+      {
+        id: "hitl-workflow-suspend-resume",
+        name: "Workflow Suspend/Resume",
+        icon: Workflow,
+        description: "How to suspend and resume a workflow",
+      },
+    ],
+  }
 ];
 
 export default function Page() {
@@ -168,6 +197,12 @@ export default function Page() {
         return <NetworkDemo />;
       case "generative-user-interfaces-with-custom-events":
         return <GenerativeUserInterfacesCustomEventsDemo />;
+      case "sub-agents-and-workflows-with-custom-events":
+        return <SubAgentsAndWorkflowsCustomEventsDemo />;
+      // case "agent-network-with-custom-events":
+      //   return <AgentNetworkCustomEventsDemo />;
+      // case "hitl-workflow-suspend-resume":
+      //   return <WorkflowSuspendResumeDemo />;
       case "client-ai-sdk":
         return <ClientAISdkDemo />;
       case "client-assistant-ui":
