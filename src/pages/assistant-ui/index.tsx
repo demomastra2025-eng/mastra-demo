@@ -13,14 +13,14 @@ import { useThreads } from "@/hooks/use-threads";
 import { useAgentMessages } from "@/hooks/use-agent-messages";
 import {
   AssistantRuntimeProvider,
-  ThreadListPrimitive,
   useExternalStoreRuntime,
   type AppendMessage,
 } from "@assistant-ui/react";
 import { Button } from "@/components/ui/button";
-import { PlusIcon } from "lucide-react";
+import { PlusIcon, X } from "lucide-react";
 import type { StorageThreadType } from "@mastra/core/memory";
 import { ThreadListSkeleton } from "@/components/assistant-ui/thread-list";
+import { useDeleteThread } from "@/hooks/use-delete-thread";
 
 const suggestions = [
   {
@@ -41,6 +41,10 @@ const suggestions = [
   },
 ];
 
+function newThreadLink(agentId: string) {
+  return `/assistant-ui/${agentId}/chat/${uuid()}`;
+}
+
 const AssistantUIDemo = () => {
   const { agentId, threadId } = useParams();
   const navigate = useNavigate();
@@ -56,12 +60,20 @@ const AssistantUIDemo = () => {
     agentId: agentId!,
     isMemoryEnabled: !!memory?.result,
   });
+  const { mutateAsync } = useDeleteThread();
 
   useEffect(() => {
     if (memory?.result && (!threadId || threadId === "new")) {
-      navigate(`/assistant-ui/${agentId}/chat/${uuid()}`);
+      navigate(newThreadLink(agentId!));
     }
   }, [memory?.result, threadId, agentId, navigate]);
+
+  const handleDelete = async (deleteId: string) => {
+    await mutateAsync({ threadId: deleteId!, agentId: agentId! });
+    if (deleteId === threadId) {
+      navigate(newThreadLink(agentId!));
+    }
+  };
 
   if (isAgentLoading) {
     return null;
@@ -75,6 +87,7 @@ const AssistantUIDemo = () => {
         isLoading={isThreadsLoading}
         threadId={threadId!}
         agentId={agentId!}
+        onDelete={handleDelete}
       />
       <Chat
         agentId={agentId!}
@@ -223,27 +236,34 @@ interface SidebarProps {
   isLoading: boolean;
   threadId: string;
   resourceId: string;
+  onDelete: (threadId: string) => void;
 }
 
-const Sidebar = ({ agentId, threadId, threads, isLoading }: SidebarProps) => {
+const Sidebar = ({
+  agentId,
+  threadId,
+  threads,
+  isLoading,
+  onDelete,
+}: SidebarProps) => {
   if (isLoading) {
     return <ThreadListSkeleton />;
   }
 
   return (
-    <ThreadListPrimitive.Root className="aui-root aui-thread-list-root flex flex-col items-stretch gap-1.5">
-      <div>
+    <ol className="aui-root aui-thread-list-root flex flex-col items-stretch gap-1.5">
+      <li>
         <Button
           className="aui-thread-list-new flex items-center justify-start gap-1 rounded-lg px-2.5 py-2 text-start hover:bg-muted data-active:bg-muted"
           variant="outline"
           asChild
         >
-          <Link to={`/assistant-ui/${agentId}/chat/${uuid()}`}>
+          <Link to={newThreadLink(agentId)}>
             <PlusIcon />
             New Thread
           </Link>
         </Button>
-      </div>
+      </li>
 
       {threads.map((thread) => {
         const isActive = thread.id === threadId;
@@ -251,20 +271,29 @@ const Sidebar = ({ agentId, threadId, threads, isLoading }: SidebarProps) => {
         const threadLink = `/assistant-ui/${agentId}/chat/${thread.id}`;
 
         return (
-          <div key={thread.id}>
+          <li key={thread.id}>
             <Button
-              className="aui-thread-list-new flex items-center justify-start gap-1 rounded-lg px-2.5 py-2 text-start hover:bg-muted data-active:bg-muted"
+              className="aui-thread-list-new flex items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-start hover:bg-muted data-active:bg-muted"
               variant="ghost"
               asChild
               data-active={isActive ? true : undefined}
             >
-              <Link to={threadLink}>
-                <span className="truncate">{thread.title}</span>
-              </Link>
+              <div>
+                <Link className="max-w-32 truncate" to={threadLink}>
+                  {thread.title}
+                </Link>
+                <Button
+                  onClick={() => onDelete(thread.id)}
+                  variant="outline"
+                  size="icon-sm"
+                >
+                  <X aria-label="Delete Thread" />
+                </Button>
+              </div>
             </Button>
-          </div>
+          </li>
         );
       })}
-    </ThreadListPrimitive.Root>
+    </ol>
   );
 };
