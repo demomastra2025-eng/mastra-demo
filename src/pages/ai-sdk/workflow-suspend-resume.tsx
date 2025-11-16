@@ -25,10 +25,11 @@ import type { WorkflowDataPart } from "@mastra/ai-sdk";
 
 type WorkflowData = WorkflowDataPart["data"];
 
-const STATUS_MAP: Record<
-  WorkflowData["steps"][string]["status"],
-  ToolUIPart["state"]
-> = {
+type WorkflowStepStatus =
+  | WorkflowData["steps"][string]["status"]
+  | "bailed";
+
+const STATUS_MAP: Record<WorkflowStepStatus, ToolUIPart["state"]> = {
   running: "input-available",
   waiting: "input-available",
   suspended: "input-available",

@@ -1,5 +1,5 @@
 import { createTool } from "@mastra/client-js";
-import z from "zod";
+import { z } from "zod";
 
 export function changeBgColor(color: string) {
   if (typeof window !== "undefined") {
