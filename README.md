@@ -2,21 +2,25 @@
 
 A Mastra showcase demonstrating how to integrate Mastra with popular AI UI frameworks. Compare implementations side-by-side and choose the best approach for your project.
 
-## Overview
-
 This project provides working examples of Mastra integrated with three major AI UI frameworks, plus demonstrations of advanced patterns like generative UIs, workflows, and agent networks. Use this as a reference to understand how Mastra works with different UI approaches and pick the one that fits your needs.
+
+In addition to this project, also consult the official documentation:
+
+- [AI SDK](https://mastra.ai/docs/frameworks/agentic-uis/ai-sdk)
+- [Assistant UI](https://mastra.ai/docs/frameworks/agentic-uis/assistant-ui)
+- [CopilotKit](https://mastra.ai/docs/frameworks/agentic-uis/copilotkit)
 
 ## Features
 
 - **Framework Comparisons**: See Mastra working with AI SDK, Assistant UI, and CopilotKit
 - **Generative UIs**: Build custom UI components for tool responses
-- **Workflows**: Implement multi-step AI workflows with streaming
+- **Workflows**: Implement multi-step AI workflows with streaming and suspend/resume steps (including "Human in the Loop")
 - **Agent Networks**: Coordinate multiple AI agents for complex tasks
 - **Client SDK Integration**: Use Mastra's Client SDK with different frameworks
 
 ## Prerequisites
 
-- Node.js 20 or higher
+- Node.js 20 or later
 - OpenAI API key
 
 ## Setup
@@ -54,6 +58,8 @@ Compare three different approaches to building chat interfaces with Mastra:
 - **Assistant UI** (`src/pages/assistant-ui/index.tsx`) - Built with Assistant UI's Thread components and `useExternalStoreRuntime()` to connect Assistant UI to Mastra's memory
 - **CopilotKit** (`src/pages/copilot-kit/index.tsx`) - Built with CopilotKit's Chat component
 
+These examples showcase similar chat functionality implemented with different UI frameworks, allowing you to compare their approaches and capabilities.
+
 ### AI SDK UI
 
 Explore advanced AI SDK UI capabilities:
@@ -65,6 +71,13 @@ Explore advanced AI SDK UI capabilities:
 ### Custom Events
 
 - **Generative UIs** (`src/pages/ai-sdk/generative-user-interfaces-with-custom-events.tsx`) - Custom UI for custom events
+- **Agent Networks** (`src/pages/ai-sdk/agent-network-custom-events.tsx`) - Agent networks with custom event handling
+- **Sub-agents and Workflows** (`src/pages/ai-sdk/sub-agents-and-workflows-custom-events.tsx`) - Sub-agents and workflows with custom events
+
+### Workflow Patterns
+
+- **Suspend/Resume** (`src/pages/ai-sdk/workflow-suspend-resume.tsx`) - Workflow with
+  suspend and resume capabilities (Human in the Loop)
 
 ### Client Tools
 
@@ -73,27 +86,6 @@ See how to use client tools with each framework:
 - **AI SDK + Client SDK** (`src/pages/client-tools/ai-sdk.tsx`)
 - **Assistant UI + Client SDK** (`src/pages/client-tools/assistant-ui.tsx`)
 - **CopilotKit + Client SDK** (`src/pages/client-tools/copilot-kit.tsx`)
-
-## Architecture
-
-### Agents (`src/mastra/agents/`)
-
-Example agents demonstrating different capabilities:
-
-- **Weather Agent** - Provides weather information using external tools
-- **Ghibli Agent** - Studio Ghibli themed responses with image generation
-- **Routing Agent** - Coordinates between multiple specialized agents
-- **Background Color Agent** - Demonstrates UI manipulation through tools
-
-### Tools (`src/mastra/tools/`)
-
-- **Weather Tool** - Fetches weather data for locations
-- **Ghibli Tool** - Generates Studio Ghibli style images
-- **Color Change Tool** - Updates UI background colors
-
-### Workflows (`src/mastra/workflows/`)
-
-- **Activities Workflow** - Multi-step workflow for planning activities based on weather
 
 ## Common Issues
 
@@ -112,7 +104,7 @@ Example agents demonstrating different capabilities:
 
 - Check the browser console and terminal for errors
 - Verify your OpenAI API key has sufficient credits
-- Ensure the Mastra server is running (check `http://localhost:4111`)
+- Ensure the Mastra server is running (check `http://localhost:4750`)
 
 ## Development
 
